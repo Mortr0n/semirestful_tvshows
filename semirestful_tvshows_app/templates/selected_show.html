@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang='en-US'>
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Selected Show</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div id='wrapper'>
+        
+        <h1>TV Show {{id}}</h1>
+        <h2>Title {{title}}</h2>
+        <h2>Network: {{network}}</h2>
+        <h2>Release Date: {{release}}</h2>
+        
+    </div>
+</body>
+</html>

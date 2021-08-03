@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang='en-US'>
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>New Show</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div id='wrapper'>
+        <h1>Add a New Show</h1>
+        <form action="create" method="POST">
+            {% csrf_token %}
+            <label for="title_input">Title</label>
+            <input name="title_input" type="text">
+            <label for="Network_input">Network</label>
+            <input name="network_input" type="text">
+            <label for="release_date_input">Release Date</label>
+            <input name="release_date_input" type="date">
+            <label for="desc_input">Description</label>
+            <textarea name="desc_input" id="" cols="30" rows="10"></textarea>
+            <button type="submit" value="{{new_show.id}}" name="add_show">Add Show</button>
+        </form>
+        
+        
+        
+    </div>
+</body>
+</html>
