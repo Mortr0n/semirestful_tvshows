@@ -23,13 +23,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for i in all_shows %}
+                    {% for show in all_shows %}
                     <tr>
-                        <td>{{i.id}}</td>
-                        <td>{{i.title}}</td>
-                        <td>{{i.network}}</td>
-                        <td>{{i.release_date}}</td>
-                        <td><a href="#">Show</a>|<a href="#">Edit</a><a href="#">Delete</a></td>
+                        <td>{{show.id}}</td>
+                        <td>{{show.title}}</td>
+                        <td>{{show.network}}</td>
+                        <td>{{show.release_date}}</td>
+                        <td>
+                            <form action="/shows/{{show.id}}" method="POST">
+                                {% csrf_token %}
+                                <button type="submit" value="{{show.id}}" >Show</button>
+                            </form> |
+                            <form action="/shows/{{show.id}}/edit" method="GET">
+                                {% csrf_token %}
+                                <button type="submit" value="{{show.id}}">Update</button>
+                            </form>
+                            <form action="/shows/{{show.id}}/delete" method="POST">
+                                {% csrf_token %}
+                                <button type="submit" value="{{show.id}}">Delete</button> 
+                            </form>
+                            </td>
                     </tr>
                     {% endfor %}
                 </tbody>
