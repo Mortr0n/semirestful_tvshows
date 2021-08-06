@@ -4,19 +4,34 @@
     <meta charset='UTF-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>Selected Show</title>
+    <title>{{title}}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
     <div id='wrapper'>
+        <div class="header">
+            <h1>TV Show {{id}}</h1>
+            <a class="back_link" href="/">Go Back</a>
+        </div>
         
-        <h1>TV Show {{id}}</h1>
-        <h2>Title {{title}}</h2>
-        <h2>Network: {{network}}</h2>
-        <h2>Release Date: {{release}}</h2>
+        <p>Title {{title}}</p>
+        <p>Network: {{network}}</p>
+        <p>Release Date: {{release}}</p>
         <p>Description: {{desc}}</p>
-        
+        <div id="button_div">
+            <form action="/shows/{{id}}/edit" method="GET">
+                {% csrf_token %}
+                <button class="show_button" type="submit" value="{{id}}">Update</button>
+            </form>   
+            <form action="/shows/{{id}}/delete" method="POST">
+                {% csrf_token %}
+                <button class="show_button" type="submit" value="{{id}}">Delete</button> 
+            </form>
+        </div>
     </div>
 </body>
 </html>

@@ -5,27 +5,39 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>{{current_show.title}}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
     <div id='wrapper'>
-        <h1>Edit Show {{current_show.id}} </h1>
+        <h1 id="fix">Edit Show {{current_show.id}} </h1>
         <form action="update" method="POST">
             {% csrf_token %}
             <label for="title_input">Title</label>
             <input name="title_input" type="text" value="{{current_show.title}}">
-            <label for="Network_input">Network</label>
-            <input name="network_input" type="text" value="{{current_show.network}}">
-            <label for="release_date_input">Release Date</label>
-            <input name="release_date_input" type="date" value="{{current_show.release_date|date:'Y-m-d'}}">
-            <label for="desc_input">Description</label>
-            <textarea name="desc_input" id="" cols="30" rows="10" value="{{current_show.desc}}"></textarea>
-            <button type="submit" value="{{current_show.id}}" name="update_show">Add Show</button>
+            <div class="net_release_div">
+                <div class="verticle_div">
+                    <label for="Network_input">Network</label>
+                    <input id="network_input" name="network_input" type="text" value="{{current_show.network}}">
+                </div>
+
+                <div class="verticle_div">
+                    <label for="release_date_input">Release Date</label>
+                    <input id="release_date" name="release_date_input" type="date" value="{{current_show.release_date|date:'Y-m-d'}}">
+                </div>
+            </div>
+            <div class="space"></div>
+            <div class="description_div">
+                <label for="desc_input">Description</label>
+                <textarea name="desc_input" id="" cols="30" rows="10">{{current_show.desc}}</textarea>
+            </div>
+            
+            <button type="submit" id="edit_button" class="show_button" value="{{current_show.id}}" name="update_show">Add Show</button>
         </form>
-        
-        
-        
     </div>
 </body>
 </html>

@@ -27,7 +27,6 @@ def create(request):
 
 def selected_show(request, showID):
     selected_show = Shows.objects.get(id=showID)
-    
     context = {
         'id' : selected_show.id,
         'title' : selected_show.title,
@@ -37,6 +36,7 @@ def selected_show(request, showID):
         
     }
     return render(request, 'selected_show.html', context)
+
 # TODO: possibly reduce the context to include variable as well
 def edit_show(request, showID):
     if request.method == 'GET':
@@ -48,8 +48,9 @@ def edit_show(request, showID):
         
 
 def update_show(request, showID):
-    if request.method == 'POST':
-        current_show = Shows.objects.get(id=showID)
+    
+    if request.method == 'POST': 
+        current_show = Shows.objects.get(id=showID)       
         current_show.title = request.POST['title_input']
         current_show.network = request.POST['network_input']
         current_show.release_date = request.POST['release_date_input']
