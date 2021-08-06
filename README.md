@@ -1,7 +1,7 @@
 # semirestful_tvshows
-<p align="center">
+<h3 align="center">
 Django full stack learning project 
-  </p>
+  </h3>
 ### Project for inputting a list of TV shows.  Functionality for Creating, Reading, Updating, and Deleting shows into a database using Django framework.
   ##All Show Page
   <p align="center">
