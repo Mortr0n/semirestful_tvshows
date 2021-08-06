@@ -19,9 +19,10 @@
         </div>
         
         <p>Title {{title}}</p>
-        <p>Network: {{network}}</p>
+        <p>Network: {{network}} </p>
         <p>Release Date: {{release}}</p>
-        <p>Description: {{desc}}</p>
+        <!-- TODO: why isn't the desc working? -->
+        <p>Description: {{description}}</p>
         <div id="button_div">
             <form action="/shows/{{id}}/edit" method="GET">
                 {% csrf_token %}

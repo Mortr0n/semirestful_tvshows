@@ -22,9 +22,11 @@ def create(request):
             title = request.POST['title_input'],
             network = request.POST['network_input'],
             release_date = request.POST['release_date_input'],
+            desc = request.POST['desc_input'],
     )
     return redirect(f'/shows/{new_show.id}')
 
+# TODO: Get help with finding why description isn't working
 def selected_show(request, showID):
     selected_show = Shows.objects.get(id=showID)
     context = {
@@ -32,8 +34,7 @@ def selected_show(request, showID):
         'title' : selected_show.title,
         'network' : selected_show.network,
         'release' : selected_show.release_date,
-        'desc' : selected_show.desc,
-        
+        'description' : selected_show.desc,
     }
     return render(request, 'selected_show.html', context)
 

@@ -1,20 +1,26 @@
 <!DOCTYPE html>
 <html lang='en-US'>
+
 <head>
     <meta charset='UTF-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>{{current_show.title}}</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
+
 <body>
     <div id='wrapper'>
-        <h1 id="fix">Edit Show {{current_show.id}} </h1>
+        <div class="header">
+            <h1 id="fix">Edit Show {{current_show.id}} </h1>
+            <a class="back_link" href="/">Go Back</a>
+        </div>
         <form action="update" method="POST">
             {% csrf_token %}
             <label for="title_input">Title</label>
@@ -27,7 +33,8 @@
 
                 <div class="verticle_div">
                     <label for="release_date_input">Release Date</label>
-                    <input id="release_date" name="release_date_input" type="date" value="{{current_show.release_date|date:'Y-m-d'}}">
+                    <input id="release_date" name="release_date_input" type="date"
+                        value="{{current_show.release_date|date:'Y-m-d'}}">
                 </div>
             </div>
             <div class="space"></div>
@@ -35,9 +42,11 @@
                 <label for="desc_input">Description</label>
                 <textarea name="desc_input" id="" cols="30" rows="10">{{current_show.desc}}</textarea>
             </div>
-            
-            <button type="submit" id="edit_button" class="show_button" value="{{current_show.id}}" name="update_show">Add Show</button>
+
+            <button type="submit" id="edit_button" class="show_button" value="{{current_show.id}}"
+                name="update_show">Edit Show</button>
         </form>
     </div>
 </body>
+
 </html>
