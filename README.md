@@ -1,4 +1,4 @@
-# semirestful_tvshows
+<h1 align="center"> semirestful_tvshows</h1>
 <h2 align="center">
 Django full stack learning project 
   </h2>
