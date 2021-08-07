@@ -18,19 +18,15 @@
             <a class="back_link" href="/">Go Back</a>
         </div>
         
-        <p>Title {{title}}</p>
-        <p>Network: {{network}} </p>
-        <p>Release Date: {{release}}</p>
-        <!-- TODO: why isn't the desc working? -->
-        <p>Description: {{description}}</p>
+        <p>Title {{this_show.title}}</p>
+        <p>Network: {{this_show.network}} </p>
+        <p>Release Date: {{this_show.release_date}}</p>
+        <p>Description: {{this_show.desc}}</p>
         <div id="button_div">
-            <form action="/shows/{{id}}/edit" method="GET">
+            <a href="/shows/{{this_show.id}}/edit"> <button class="show_button">Update</button></a>
+            <form action="/shows/{{this_show.id}}/delete" method="POST">
                 {% csrf_token %}
-                <button class="show_button" type="submit" value="{{id}}">Update</button>
-            </form>   
-            <form action="/shows/{{id}}/delete" method="POST">
-                {% csrf_token %}
-                <button class="show_button" type="submit" value="{{id}}">Delete</button> 
+                <button class="show_button" type="submit">Delete</button> 
             </form>
         </div>
     </div>

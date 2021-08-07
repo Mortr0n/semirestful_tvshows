@@ -30,20 +30,23 @@
                     <label for="Network_input">Network</label>
                     <input name="network_input" type="text">
                 </div>
-
                 <div class="verticle_div">
                     <label for="release_date_input">Release Date</label>
                     <input name="release_date_input" type="date">
                 </div>
-
             </div>
             <div class="space"></div>
             <div class="description_div">
                 <label for="desc_input">Description</label>
                 <textarea name="desc_input" id="" cols="30" rows="10"></textarea>
             </div>
-
-
+           {% if messages %}
+           <ul class="messages">
+               {% for message in messages %}
+               <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }} </li>
+               {% endfor %}
+           </ul>
+           {% endif %}
             <button id="edit_button" class="show_button" type="submit" value="{{new_show.id}}" name="add_show">Add
                 Show</button>
         </form>

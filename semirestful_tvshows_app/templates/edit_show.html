@@ -42,7 +42,13 @@
                 <label for="desc_input">Description</label>
                 <textarea name="desc_input" id="" cols="30" rows="10">{{current_show.desc}}</textarea>
             </div>
-
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
             <button type="submit" id="edit_button" class="show_button" value="{{current_show.id}}"
                 name="update_show">Edit Show</button>
         </form>

@@ -1,5 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect
+from django.contrib import messages
 from .models import Shows
+
 
 def index(request):
     
@@ -12,29 +14,33 @@ def shows(request):
     }
     return render(request, 'all_shows.html', context)
 
+
 def new(request):
     
     return render(request, 'new_show.html')
 
 def create(request):
     if request.method == 'POST':
-        new_show = Shows.objects.create(
-            title = request.POST['title_input'],
-            network = request.POST['network_input'],
-            release_date = request.POST['release_date_input'],
-            desc = request.POST['desc_input'],
-    )
-    return redirect(f'/shows/{new_show.id}')
+        errors = Shows.objects.basic_validator(request.POST)
+        if len(errors) > 0:
+            for key, value in errors.items():
+                messages.error(request, value)
+            return redirect('/shows/new')
+        else:
+            new_show = Shows.objects.create(
+                title = request.POST['title_input'],
+                network = request.POST['network_input'],
+                release_date = request.POST['release_date_input'],
+                desc = request.POST['desc_input'],)
+            messages.success(request, "Show successfully created")
+        return redirect(f'/shows/{new_show.id}')
+    return redirect('/')
 
-# TODO: Get help with finding why description isn't working
+
 def selected_show(request, showID):
     selected_show = Shows.objects.get(id=showID)
     context = {
-        'id' : selected_show.id,
-        'title' : selected_show.title,
-        'network' : selected_show.network,
-        'release' : selected_show.release_date,
-        'description' : selected_show.desc,
+        'this_show' : selected_show,
     }
     return render(request, 'selected_show.html', context)
 
@@ -49,14 +55,19 @@ def edit_show(request, showID):
         
 
 def update_show(request, showID):
-    
     if request.method == 'POST': 
-        current_show = Shows.objects.get(id=showID)       
-        current_show.title = request.POST['title_input']
-        current_show.network = request.POST['network_input']
-        current_show.release_date = request.POST['release_date_input']
-        current_show.desc = request.POST['desc_input']
-        current_show.save()
+        errors = Shows.objects.basic_validator(request.POST)
+        if len(errors) > 0:
+            for key, value in errors.items():
+                messages.error(request, value)
+            return redirect(f'/shows/{showID}/edit')
+        else:
+            current_show = Shows.objects.get(id=showID)       
+            current_show.title = request.POST['title_input']
+            current_show.network = request.POST['network_input']
+            current_show.release_date = request.POST['release_date_input']
+            current_show.desc = request.POST['desc_input']
+            current_show.save()
     return redirect(f'/shows/{current_show.id}')
     
 
