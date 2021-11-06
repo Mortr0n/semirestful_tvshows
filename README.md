@@ -13,7 +13,7 @@ Django full stack learning project
   </p> 
   <h2 align="center">
   Add Show Page
-  </h2>
+  </h2> 
    <p align="center">
 <img src="https://github.com/Mortr0n/semirestful_tvshows/blob/6cbc3740a128f723c6889f57d5cbf62a8c48862e/readme_images/addashow.PNG">
   </p>
