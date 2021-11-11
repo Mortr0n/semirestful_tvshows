@@ -4,7 +4,7 @@ Django full stack learning project
    </h2>
  <h3 align="center">
  Project for inputting a list of TV shows.  Functionality for Creating, Reading, Updating, and Deleting shows into a database using Django framework.
-  </h3> 
+  </h3>  
   <h2 align="center">
   All Show Page
   </h2>  
